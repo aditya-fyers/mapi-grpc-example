@@ -53,10 +53,9 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: ./snyk test
-        continue-on-error: true
 
       # Step 5: Upload SBOM and vulnerability report as artifacts
-      - name: Upload SBOM and Vulnerabilities Report
+      - name: Upload Security Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
