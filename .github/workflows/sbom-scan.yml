@@ -24,16 +24,17 @@ jobs:
 
       - name: Generate SBOM
         run: |
-          syft dir:. -o cyclonedx-json > sbom.json
+          ./bin/syft dir:. -o cyclonedx-json > sbom.json
         continue-on-error: false
 
       # Step 3: Validate SBOM with CycloneDX CLI
       - name: Install CycloneDX CLI
-        run: npm install -g @cyclonedx/cyclonedx-cli
+        run: |
+          npm install -g @cyclonedx/cyclonedx-cli
 
       - name: Validate SBOM
         run: |
-          cyclonedx-cli validate --input-file sbom.json
+          cyclonedx validate --input-file sbom.json
 
       # Step 4: Scan SBOM for vulnerabilities using Grype
       - name: Install Grype
