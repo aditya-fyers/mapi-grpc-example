@@ -53,7 +53,7 @@ jobs:
       - name: Snyk Test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: ./snyk test --json | tee snyk-report.json
+        run: ./snyk test --json > snyk-report.json
 
       # Step 5: Upload SBOM and vulnerability report as artifacts
       - name: Upload Security Report
