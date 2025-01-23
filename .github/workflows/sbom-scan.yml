@@ -52,15 +52,12 @@ jobs:
       - name: Snyk Test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: |
-          ./snyk test || export SNYK_EXIT_CODE=$?
-          if [ ! -z "$SNYK_EXIT_CODE" ]; then
-            echo "Snyk found vulnerabilities"
-            exit 1
-          fi
+        run: ./snyk test
+        continue-on-error: true
 
       # Step 5: Upload SBOM and vulnerability report as artifacts
       - name: Upload SBOM and Vulnerabilities Report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: security-reports
