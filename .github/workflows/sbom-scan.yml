@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate SBOM
         run: |
-          ./bin/syft dir:. -o cyclonedx-json > sbom.json
+          ./bin/syft dir:. -o cyclonedx-json | tee sbom.json
         continue-on-error: false
 
       # Step 3: Scan SBOM for vulnerabilities using Grype
@@ -35,7 +35,7 @@ jobs:
 
       - name: Vulnerability Scan with Grype
         run: |
-          ./bin/grype sbom:sbom.json -o table > vulnerabilities.txt
+          ./bin/grype sbom:sbom.json -o table | tee vulnerabilities.txt
         continue-on-error: false
 
       # Step 4: Snyk Vulnerability and License Scanning
@@ -53,7 +53,7 @@ jobs:
       - name: Snyk Test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: ./snyk test --json > snyk-report.json
+        run: ./snyk test --json | tee snyk-report.json
 
       # Step 5: Upload SBOM and vulnerability report as artifacts
       - name: Upload Security Report
