@@ -31,24 +31,28 @@ jobs:
       - name: Install Grype
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh
+        continue-on-error: false
 
       - name: Vulnerability Scan with Grype
         run: |
-          grype sbom:sbom.json -o table
-
+          ./bin/grype sbom:sbom.json -o table
+        continue-on-error: false
       # Step 4: Snyk Vulnerability and License Scanning
       - name: Install Snyk
         run: |
           curl --compressed https://downloads.snyk.io/cli/stable/snyk-macos -o snyk
           chmod +x snyk
+        continue-on-error: false
 
       - name: Authenticate Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk auth
+        continue-on-error: false
 
       - name: Snyk Test
         run: snyk test
+        continue-on-error: false
 
       # Step 5: Upload SBOM as an artifact
       - name: Upload SBOM
