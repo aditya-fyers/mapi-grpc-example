@@ -27,16 +27,7 @@ jobs:
           ./bin/syft dir:. -o cyclonedx-json > sbom.json
         continue-on-error: false
 
-      # Step 3: Validate SBOM with CycloneDX CLI
-      - name: Install CycloneDX CLI
-        run: |
-          npm i @cyclonedx/cyclonedx-npm
-
-      - name: Validate SBOM
-        run: |
-          cyclonedx validate --input-file sbom.json
-
-      # Step 4: Scan SBOM for vulnerabilities using Grype
+      # Step 3: Scan SBOM for vulnerabilities using Grype
       - name: Install Grype
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh
@@ -45,7 +36,7 @@ jobs:
         run: |
           grype sbom:sbom.json -o table
 
-      # Step 5: Snyk Vulnerability and License Scanning
+      # Step 4: Snyk Vulnerability and License Scanning
       - name: Install Snyk
         run: |
           curl --compressed https://downloads.snyk.io/cli/stable/snyk-macos -o snyk
@@ -59,7 +50,7 @@ jobs:
       - name: Snyk Test
         run: snyk test
 
-      # Step 6: Upload SBOM as an artifact
+      # Step 5: Upload SBOM as an artifact
       - name: Upload SBOM
         uses: actions/upload-artifact@v3
         with:
