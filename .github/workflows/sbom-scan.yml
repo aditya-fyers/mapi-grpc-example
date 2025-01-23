@@ -47,12 +47,11 @@ jobs:
       - name: Authenticate Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk auth
+        run: ./snyk auth
         continue-on-error: false
 
       - name: Snyk Test
-        run: snyk test
-        continue-on-error: false
+        run: ./snyk test
 
       # Step 5: Upload SBOM as an artifact
       - name: Upload SBOM
