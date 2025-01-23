@@ -1,6 +1,7 @@
 # Mayhem for API: gRPC fuzzing example
 
 [![Mayhem for API](https://mayhem4api.forallsecure.com/api/v1/api-target/forallsecure/forallsecure-mapi-grpc-example/badge/icon.svg?scm_branch=main)](https://mayhem4api.forallsecure.com/forallsecure/forallsecure-mapi-grpc-example/latest-job?scm_branch=main)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Faditya-fyers%2Fmapi-grpc-example.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Faditya-fyers%2Fmapi-grpc-example?ref=badge_shield)
 
 [![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com)
 
@@ -30,3 +31,7 @@ This repo contains a simple gRPC API that is tested by Mayhem for API. The
 used to scan and upload results.
 
 [👀 See Latest Results...](https://mayhem4api.forallsecure.com/forallsecure/forallsecure-mapi-grpc-example)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Faditya-fyers%2Fmapi-grpc-example.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Faditya-fyers%2Fmapi-grpc-example?ref=badge_large)
