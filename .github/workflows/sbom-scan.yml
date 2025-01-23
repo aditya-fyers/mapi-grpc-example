@@ -35,7 +35,7 @@ jobs:
 
       - name: Vulnerability Scan with Grype
         run: |
-          ./bin/grype sbom:sbom.json -o table
+          ./bin/grype sbom:sbom.json -o table > vulnerabilities.txt
         continue-on-error: false
       # Step 4: Snyk Vulnerability and License Scanning
       - name: Install Snyk
@@ -55,9 +55,11 @@ jobs:
         run: ./snyk test
         continue-on-error: true
 
-      # Step 5: Upload SBOM as an artifact
-      - name: Upload SBOM
+      # Step 5: Upload SBOM and vulnerability report as artifacts
+      - name: Upload SBOM and Vulnerabilities Report
         uses: actions/upload-artifact@v3
         with:
-          name: sbom
-          path: sbom.json
+          name: security-reports
+          path: |
+            sbom.json
+            vulnerabilities.txt
