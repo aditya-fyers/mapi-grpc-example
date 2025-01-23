@@ -47,10 +47,11 @@ jobs:
       - name: Authenticate Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: ./snyk auth
-        continue-on-error: false
+        run: echo "Snyk authenticated via API token"
 
       - name: Snyk Test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: ./snyk test
 
       # Step 5: Upload SBOM as an artifact
