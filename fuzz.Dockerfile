@@ -4,7 +4,7 @@
 #  - Mayhem for API: https://mayhem4api.forallsecure.com/
 #  - grpc-gateyway: https://github.com/grpc-ecosystem/grpc-gateway
 #
-FROM golang:1.17.6
+FROM golang:1.24rc1
 
 # Install protoc, protocol buffer compiler
 RUN apt update && \
