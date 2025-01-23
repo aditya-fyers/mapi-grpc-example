@@ -40,7 +40,7 @@ jobs:
       # Step 4: Snyk Vulnerability and License Scanning
       - name: Install Snyk
         run: |
-          curl --compressed https://downloads.snyk.io/cli/stable/snyk-macos -o snyk
+          curl --compressed https://downloads.snyk.io/cli/stable/snyk-linux -o snyk
           chmod +x snyk
         continue-on-error: false
 
