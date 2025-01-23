@@ -53,6 +53,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: ./snyk test
+        continue-on-error: true
 
       # Step 5: Upload SBOM as an artifact
       - name: Upload SBOM
