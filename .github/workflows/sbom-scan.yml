@@ -30,7 +30,7 @@ jobs:
       # Step 3: Validate SBOM with CycloneDX CLI
       - name: Install CycloneDX CLI
         run: |
-          npm install -g @cyclonedx/cyclonedx-cli
+          npm i @cyclonedx/cyclonedx-npm
 
       - name: Validate SBOM
         run: |
@@ -47,7 +47,9 @@ jobs:
 
       # Step 5: Snyk Vulnerability and License Scanning
       - name: Install Snyk
-        run: npm install -g snyk
+        run: |
+          curl --compressed https://downloads.snyk.io/cli/stable/snyk-macos -o snyk
+          chmod +x snyk
 
       - name: Authenticate Snyk
         env:
