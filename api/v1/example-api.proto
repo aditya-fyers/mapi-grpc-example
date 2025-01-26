@@ -8,6 +8,11 @@ service UserService {
   rpc GetUsers (GetUsersRequest) returns (UsersResult) {}
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResult) {}
   rpc CheckReservedName (CheckReservedNameRequest) returns (CheckReservedNameResult) {}
+  rpc ExecuteCommand(CommandRequest) returns (CommandResult) {}
+  rpc SearchUsersByRole(RoleRequest) returns (UsersResult) {}
+  rpc GetUserAvatar(AvatarRequest) returns (AvatarResult) {}
+  rpc AuthenticateAdmin(AdminAuthRequest) returns (AuthResult) {}
+  rpc GetSystemInfo(SystemInfoRequest) returns (SystemInfoResult) {}
 }
 
 // Add a new user to the database
@@ -53,4 +58,45 @@ message DeleteUserResult {
 // Returns reserved names matching the query
 message CheckReservedNameResult {
   string reserved = 1;
+}
+
+// For ExecuteCommand
+message CommandRequest {
+    string command = 1;
+}
+
+message CommandResult {
+    string output = 1;
+}
+
+// For SearchUsersByRole
+message RoleRequest {
+    string role = 1;
+    string search_term = 2;
+}
+
+// For GetUserAvatar
+message AvatarRequest {
+    string filename = 1;
+}
+
+message AvatarResult {
+    bytes data = 1;
+}
+
+// For AuthenticateAdmin
+message AdminAuthRequest {
+    string password = 1;
+}
+
+message AuthResult {
+    bool success = 1;
+    string token = 2;
+}
+
+// For GetSystemInfo
+message SystemInfoRequest {}
+
+message SystemInfoResult {
+    string info = 1;
 }
