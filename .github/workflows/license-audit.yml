@@ -1,28 +1,20 @@
-name: License Audit
+name: OSV-Scanner PR Scan
 
+# Change "main" to your default branch if you use a different name, i.e. "master"
 on:
   push:
-    branches:
-      - '**'  # Trigger on all branches
-  # pull_request:
-  #   branches:
-  #     - '**'  # Trigger on all pull requests
+    branches: '**'
+  # merge_group:
+  #   branches: [main]
+
+permissions:
+  # Required to upload SARIF file to CodeQL. See: https://github.com/github/codeql-action/issues/2117
+  actions: read
+  # Require writing security events to upload SARIF file to security tab
+  security-events: write
+  # Only need to read contents
+  contents: read
 
 jobs:
-  audit-licenses:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Run OSS License Auditor
-        uses: digi-wolk/olaudit-action@v1
-        with:
-          path: .
-          # comment-on-pr: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          DOCKER_USER: ${{ github.actor }}
+  scan-pr:
+    uses: "google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v1.9.2"
