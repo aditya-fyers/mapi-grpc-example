@@ -1,0 +1,23 @@
+name: License Audit
+
+on:
+  push:
+    branches:
+      - '**'  # Trigger on all branches
+  # pull_request:
+  #   branches:
+  #     - '**'  # Trigger on all pull requests
+
+jobs:
+  audit-licenses:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run OSS License Auditor
+        uses: digi-wolk/olaudit-action@v1
+        with:
+          path: .
+          # comment-on-pr: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
